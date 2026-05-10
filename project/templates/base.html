@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+
+    <div class="top-link">
+        <a href="/login">Увійти</a>
+    </div>
+
+    {% block content %}{% endblock %}
+
+</body>
+</html>

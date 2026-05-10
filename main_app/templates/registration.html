@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <img
+        src="{{ url_for('static', filename='img/world.png.png') }}"
+        class="logo"
+    >
+
+    <h2>
+        Створити обліковий запис
+    </h2>
+
+    <form method="POST">
+
+        <div class="description">
+            Введіть вашу електронну пошту нижче, щоб створити обліковий запис
+        </div>
+
+        <input
+            type="email"
+            name="email"
+            placeholder="name@example.com"
+        >
+
+        <div class="label">
+            Задайте ваш пароль нижче, щоб створити обліковий запис
+        </div>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="********"
+        >
+
+        <div class="label">
+            Підтвердіть пароль
+        </div>
+
+        <input
+            type="password"
+            name="confirm_password"
+            placeholder="********"
+        >
+
+        <button type="submit">
+            Надіслати код підтвердження
+        </button>
+
+    </form>
+
+    <div class="terms">
+        Натискаючи «Продовжити», ви погоджуєтеся з нашими<br>
+
+        <a href="#">
+            Умовами обслуговування
+        </a>
+
+        та
+
+        <a href="#">
+            Політикою конфіденційності
+        </a>.
+    </div>
+
+    <div class="image">
+        <img
+            src="{{ url_for('static', filename='img/reg.png') }}"
+            alt="img"
+        >
+    </div>
+
+</div>
+
+{% endblock %}
+
