@@ -6,9 +6,10 @@
 
 <div class="container">
 
-    <div class="logo">
-        ✦ WORLD IT
-    </div>
+    <img
+        src="{{ url_for('static', filename='img/world.png.png') }}"
+        class="logo"
+    >
 
     <h2>
         Увійти
@@ -18,14 +19,15 @@
         Введіть вашу електронну пошту та пароль
     </div>
 
-    <input type="email" placeholder="name@example.com">
+    <form method="POST">
+        <input type="email" name = "email" placeholder="name@example.com">
 
-    <input type="password" placeholder="********">
+        <input type="password" name = "password" placeholder="********">
 
-    <button>
-        Увійти
-    </button>
-
+        <button>
+            Увійти
+        </button>
+    </form>    
     <div class="image">
         <img src="/static/img/reg.png" alt="img">
     </div>
