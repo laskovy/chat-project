@@ -32,10 +32,14 @@ def render_login():
         email = flask.request.form.get("email")
         password = flask.request.form.get("password")
         user = User.query.filter_by(email=email).first()
+        print(user)
         if user:
+            print(1)
             if check_password_hash(user.password, password):
+                if not user.is_active:
+                    return flask.render_template("register_success.html")
                 login_user(user)
-                
+    
 
     return flask.render_template("login.html")
 
@@ -52,4 +56,6 @@ def verify_account():
     except:
         return "Невірний код"
 
-          
+
+def register_success():
+    return flask.render_template("register_success.html")  

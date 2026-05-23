@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="success-page">
+    <div class="success-container">
+        <img src="{{url_for('static', filename='img/world.png.png')}}" alt="WORLDIT" class="success-logo">
+        <h1 class="success-title">Успіх</h1>
+        <p class="success-message">Ми надіслали вам електронний лист з магічним посиланням
+            для підтвердження вашого облікового запису.
+            Будь ласка, перевірте свою поштову скриньку та натисніть на
+            посилання.</p>
+            <a href="https://mail.google.com/" target="_blank" class="success-mail-btn">Відкрити електронну пошту</a>
+            <img src="{{ url_for('static', filename='img/reg.png') }}" alt="Success" class="success-image">
+
+            
+    </div>
+</div>
+
+{% endblock %}
