@@ -24,7 +24,7 @@ def render_reg():
             DATA_BASE.session.commit()
             verify_link =  f"http://127.0.0.1:5000/verify?code={verify_code}"
             send_email(user_email=email, verify_link=verify_link)
-            return flask.redirect("/login")
+            return flask.redirect("/register_success")
     return flask.render_template("registration.html")
 
 def render_login():

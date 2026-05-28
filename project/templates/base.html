@@ -10,7 +10,9 @@
 <body>
 
     <div class="top-link">
+        {% block links %}
         <a href="/login">Увійти</a>
+        {% endblock %}
     </div>
 
     {% block content %}{% endblock %}

@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
 {% block title %}Login{% endblock %}
-
+{% block links %}
+    <a href="/registration">Зареєструватись</a>
+{% endblock %}
 {% block content %}
 
 <div class="container">
-
+    
     <img
         src="{{ url_for('static', filename='img/world.png.png') }}"
         class="logo"
