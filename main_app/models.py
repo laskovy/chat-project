@@ -7,4 +7,6 @@ class User(DATA_BASE.Model, UserMixin):
     password = DATA_BASE.Column(DATA_BASE.String, nullable=False)
     is_active = DATA_BASE.Column(DATA_BASE.Boolean, default=False)
     verify_code = DATA_BASE.Column(DATA_BASE.String, nullable=True)
-    
+
+    groups = DATA_BASE.relationship("Group", back_populates="creator")
+    messages = DATA_BASE.relationship("Message", back_populates="user")
