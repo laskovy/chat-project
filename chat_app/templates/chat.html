@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
+    
     <header class="chat-header">
         <div class="header-logo">
             <img src="{{ url_for('static', filename='img/logo_icon.png.png') }}" alt="">
@@ -27,8 +27,67 @@
     </header>
 
     
+<div class="messenger-main-body">
+
+        
+    <aside class="chat-sidebar-left">
+        
+        
+        <div class="sidebar-search-block">
+            <img src="{{ url_for('static', filename='img/search_icon.png.png') }}" class="search-field-icon" alt="Поиск">
+            <input type="text" class="sidebar-search-input" placeholder="Пошук чатів...">
+        </div>
+
+        
+        <div class="sidebar-divider"></div>
+
+        
+        <div class="sidebar-title-row">
+            <h2 class="sidebar-main-title">Ваш чат</h2>
+            <button class="sidebar-delete-btn" type="button">
+                <img src="{{ url_for('static', filename='img/delete_icon.png.png') }}" alt="Удалить">
+            </button>
+        </div>
+
+        
+        <div class="sidebar-cards-list">
+            
+            
+            <div class="sidebar-chat-card">
+                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="sidebar-chat-avatar" alt="Dream Team">
+                <div class="sidebar-card-content">
+                    <div class="sidebar-card-top">
+                        <span class="sidebar-chat-name font-semibold">Dream Team</span>
+                        <span class="sidebar-chat-time">15m ago</span>
+                    </div>
+                    <p class="sidebar-chat-text text-muted">I just shared the new mockups in Figma</p>
+                </div>
+            </div>
+
+        
+            <div class="sidebar-divider"></div>
+
+            
+            <div class="sidebar-chat-card">
+                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="sidebar-chat-avatar" alt="General Chat">
+                <div class="sidebar-card-content">
+                    <div class="sidebar-card-top">
+                        <span class="sidebar-chat-name font-semibold">General Chat</span>
+                        <span class="sidebar-chat-time">2m ago</span>
+                    </div>
+                    
+                    <div class="sidebar-card-bottom-row">
+                        <p class="sidebar-chat-text text-muted">Hey everyone! How is the project going?</p>
+                        <span class="sidebar-chat-badge">3</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </aside>
 
 
-   
+        
+</div>
 </body>
 </html>
