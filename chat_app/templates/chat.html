@@ -84,10 +84,62 @@
             </div>
 
         </div>
+        
+    </aside>
+    <main class="chat-main">
+        <header class="chat-header">
+            <h2>General Chat</h2>
+            <div class="header-icons">
+                <button class="search-header-chat"><img src="{{ url_for('static', filename='img/search_icon.png.png') }}"  alt="Search"></button>
+                <button class="menu-header-chat"><img src="{{ url_for('static', filename='img/menu_icon.png.png') }}"  alt="Menu"></button>
+            </div>
+        </header>
+        <div class="chat-history">
+            <div class="message">
+                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="avatar" alt="avatar">
+                <div>
+                    <div class="message-header">
+                        <span class="author">Alex</span>
+                        <span class="time">9:24 AM</span>
+                    </div>
+                    <div class="message-text">Hey everyone! Good morning!</div>
+                    <div class="reactions">❤️ 5</div>
+                </div>
+            </div>
+            <div class="message">
+                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="avatar" alt="avatar">
+                <div>
+                    <div class="message-header">
+                        <span class="author">Maria</span>
+                        <span class="time">9:26 AM</span>
+                    </div>
+                    <div message-text>Morning Alex! How was your weekend?</div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <img src="{{ url_for('static', filename='img/emoji_icon.png.png') }}" alt="Emoji">
+            <input type="text" class="write-message" placeholder="Введіть повідомлення...">
+            <button class="send-btn"><img src="{{ url_for('static', filename='img/send_icon.png.png') }}" alt=""></button>
+        </div>
+    </main>
+    <aside class="sidebar-right">
+        <div class="users-section">
+            <h3 class="users-panel-title">
+                <img src="{{ url_for('static', filename='img/users_icon.png.png') }}" class="users-panel-icon" alt="">
+                Користувачи <span class="users-panel-count">(24)</span>
+            </h3>
+            <div class="user-card">
+                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="user-card-avatar" alt="">
+                <span class="user-card-name">Іван Петренко</span>
+            </div>
+            <div class="user-card">
+                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="users-panel-icon" alt="">
+                <span class="user-card-name">Maria</span>
+            </div>
+        </div>
     </aside>
 
-
-        
 </div>
 </body>
 </html>
