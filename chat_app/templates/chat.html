@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
 </head>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
 <body>
     
     <header class="chat-header">
@@ -53,16 +55,34 @@
         <div class="sidebar-cards-list">
             
             
-            <div class="sidebar-chat-card">
-                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="sidebar-chat-avatar" alt="Dream Team">
-                <div class="sidebar-card-content">
-                    <div class="sidebar-card-top">
-                        <span class="sidebar-chat-name font-semibold">Dream Team</span>
-                        <span class="sidebar-chat-time">15m ago</span>
-                    </div>
-                    <p class="sidebar-chat-text text-muted">I just shared the new mockups in Figma</p>
-                </div>
-            </div>
+            {% if my_group %}
+
+<div class="sidebar-chat-card">
+    <img src="{{ url_for('static', filename='img/avatar.png.png') }}"
+         class="sidebar-chat-avatar"
+         alt="Chat">
+
+    <div class="sidebar-card-content">
+        <div class="sidebar-card-top">
+            <span class="sidebar-chat-name font-semibold">
+                {{ my_group.name }}
+            </span>
+        </div>
+
+        <p class="sidebar-chat-text text-muted">
+            Ваш чат
+        </p>
+    </div>
+</div>
+
+{% else %}
+
+<button id="openModal" class="create-chat-btn">
+    <span>+</span>
+    <span>Створити чат</span>
+</button>
+
+{% endif %}
 
         
             <div class="sidebar-divider"></div>
@@ -113,7 +133,7 @@
                         <span class="author">Maria</span>
                         <span class="time">9:26 AM</span>
                     </div>
-                    <div message-text>Morning Alex! How was your weekend?</div>
+                    <div class="message-text">Morning Alex! How was your weekend?</div>
                 </div>
             </div>
         </div>
@@ -123,23 +143,99 @@
             <button class="send-btn"><img src="{{ url_for('static', filename='img/send_icon.png.png') }}" alt=""></button>
         </div>
     </main>
-    <aside class="sidebar-right">
+        <aside class="sidebar-right">
+    
         <div class="users-section">
-            <h3 class="users-panel-title">
-                <img src="{{ url_for('static', filename='img/users_icon.png.png') }}" class="users-panel-icon" alt="">
-                Користувачи <span class="users-panel-count">(24)</span>
-            </h3>
-            <div class="user-card">
-                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="user-card-avatar" alt="">
-                <span class="user-card-name">Іван Петренко</span>
+    <div class="users-panel-header">
+    <h3>Користувачі</h3>
+
+    <div class="users-meta">
+        <span>
+            <img src="/static/img/users_icon.png.png" alt="">
+            24 користувача
+        </span>
+
+        <span>
+            <img src="/static/img/users_icon.png.png" alt="">
+            8 online
+        </span>
+    </div>
+</div>
+    <div class="user-card">
+        <span class="user-status online"></span>
+        <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="user-card-avatar" alt="">
+        <span class="user-card-name">Іван Петренко</span>
+    </div>
+    <div class="user-card">
+        <span class="user-status offline"></span>
+        <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="user-card-avatar" alt="">
+        <span class="user-card-name">Maria</span>
+    </div>
+</div>
+
+
+       
+        <div class="user-details-panel">
+            <button class="user-panel-close" aria-label="Закрыть">&times;</button>
+            
+            <div class="user-panel-info">
+                
+                <div class="user-panel-avatar">ІП</div>
+                <h2 class="user-panel-name">Іван Петренко</h2>
+                <a href="#" class="user-panel-tag">@ivan_petrenko</a>
             </div>
-            <div class="user-card">
-                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="users-panel-icon" alt="">
-                <span class="user-card-name">Maria</span>
+
+            <div class="user-panel-data">
+                <div class="user-data-item">
+                    <span class="user-data-label">Дата народження</span>
+                    <span class="user-data-value">15 квіт. 1995 (30 років)</span>
+                </div>
+                
+                <div class="user-data-item">
+                    <span class="user-data-label">Стать</span>
+                    <span class="user-data-value">Чоловік</span>
+                </div>
             </div>
         </div>
     </aside>
 
+
+</div>
+<div id="createChatModal" class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Створити чат</h2>
+            <button type="button" class="close-modal">&times;</button>
+        </div>
+
+        <form method="POST" action="{{ url_for('create_chat') }}">
+
+            <div class="modal-body">
+                <label>Назва чату</label>
+
+                <input
+                    type="text"
+                    name="chat_name"
+                    placeholder="Введіть назву чату"
+                    required
+                >
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel">
+                    Скасувати
+                </button>
+
+                <button type="submit" class="btn-create">
+                    Створити
+                </button>
+            </div>
+
+        </form>
+
+    </div>
 </div>
 </body>
+
 </html>

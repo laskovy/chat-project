@@ -39,6 +39,7 @@ def render_login():
                 if not user.is_active:
                     return flask.render_template("register_success.html")
                 login_user(user)
+                return flask.redirect("/chat")
     
 
     return flask.render_template("login.html")
