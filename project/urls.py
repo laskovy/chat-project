@@ -1,7 +1,7 @@
 from  main_app.views import render_reg, render_login
 from project.settings import project
 from main_app.views import *
-from chat_app.views import render_chat, create_chat
+from chat_app.views import render_chat, create_chat, delete_chat
 
 
 
@@ -12,3 +12,4 @@ project.add_url_rule(rule='/verify', view_func=verify_account)
 project.add_url_rule(rule='/register_success', view_func=register_success)
 project.add_url_rule(rule="/chat", view_func=render_chat)
 project.add_url_rule("/create_chat", view_func=create_chat, methods=["POST"])
+project.add_url_rule('/delete_chat', view_func=delete_chat, methods=["POST"])

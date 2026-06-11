@@ -3,6 +3,7 @@ from main_app.app import applic
 from flask_migrate import Migrate
 from project.db import DATA_BASE
 from .login_manager import login_manager
+from flask_socketio import SocketIO
 
 
 project = Flask(
@@ -16,3 +17,4 @@ project.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 DATA_BASE.init_app(project)
 
 migrate = Migrate(project, DATA_BASE)
+socketio = SocketIO(project)

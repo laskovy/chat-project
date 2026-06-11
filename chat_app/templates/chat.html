@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
 </head>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
-<body>
+<body class="chat-page" >
     
     <header class="chat-header">
         <div class="header-logo">
@@ -46,7 +47,7 @@
         
         <div class="sidebar-title-row">
             <h2 class="sidebar-main-title">Ваш чат</h2>
-            <button class="sidebar-delete-btn" type="button">
+            <button class="sidebar-delete-btn" type="button" onclick="deleteChat()">
                 <img src="{{ url_for('static', filename='img/delete_icon.png.png') }}" alt="Удалить">
             </button>
         </div>
@@ -82,26 +83,32 @@
     <span>Створити чат</span>
 </button>
 
-{% endif %}
+{% endif %} 
+                
 
         
-            <div class="sidebar-divider"></div>
-
-            
+        <div class="sidebar-divider"></div>
+            {% for group in groups %}
             <div class="sidebar-chat-card">
-                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="sidebar-chat-avatar" alt="General Chat">
-                <div class="sidebar-card-content">
-                    <div class="sidebar-card-top">
-                        <span class="sidebar-chat-name font-semibold">General Chat</span>
-                        <span class="sidebar-chat-time">2m ago</span>
-                    </div>
-                    
-                    <div class="sidebar-card-bottom-row">
-                        <p class="sidebar-chat-text text-muted">Hey everyone! How is the project going?</p>
-                        <span class="sidebar-chat-badge">3</span>
-                    </div>
-                </div>
-            </div>
+            <img src="{{ url_for('static', filename='img/avatar.png.png') }}"
+            class="sidebar-chat-avatar"
+            alt="Chat">
+
+            <div class="sidebar-card-content">
+            <div class="sidebar-card-top">
+            <span class="sidebar-chat-name font-semibold">
+                {{ group.name }}
+            </span>
+        </div>
+
+        <p class="sidebar-chat-text text-muted">
+            Чат іншого користувача
+        </p>
+    </div>
+</div>
+{% endfor %}
+            
+            
 
         </div>
         

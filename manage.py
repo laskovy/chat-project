@@ -1,12 +1,11 @@
-from project.settings import project
+from project.settings import project, socketio
 
 
-app = project
 def main():
     try:
-        project.run(debug=True)
+        socketio.run(project, debug=True)
     except Exception as error:
-        print("Error")
+        print("Error", error)
 
 if __name__ == "__main__":
     main()
