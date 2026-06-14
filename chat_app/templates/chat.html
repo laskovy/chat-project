@@ -58,7 +58,7 @@
             
             {% if my_group %}
 
-<div class="sidebar-chat-card">
+<div class="sidebar-chat-card" data-group-id="{{ my_group.id }}">
     <img src="{{ url_for('static', filename='img/avatar.png.png') }}"
          class="sidebar-chat-avatar"
          alt="Chat">
@@ -89,7 +89,7 @@
         
         <div class="sidebar-divider"></div>
             {% for group in groups %}
-            <div class="sidebar-chat-card">
+            <div class="sidebar-chat-card" data-group-id="{{ group.id }}">
             <img src="{{ url_for('static', filename='img/avatar.png.png') }}"
             class="sidebar-chat-avatar"
             alt="Chat">
@@ -121,29 +121,7 @@
                 <button class="menu-header-chat"><img src="{{ url_for('static', filename='img/menu_icon.png.png') }}"  alt="Menu"></button>
             </div>
         </header>
-        <div class="chat-history">
-            <div class="message">
-                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="avatar" alt="avatar">
-                <div>
-                    <div class="message-header">
-                        <span class="author">Alex</span>
-                        <span class="time">9:24 AM</span>
-                    </div>
-                    <div class="message-text">Hey everyone! Good morning!</div>
-                    <div class="reactions">❤️ 5</div>
-                </div>
-            </div>
-            <div class="message">
-                <img src="{{ url_for('static', filename='img/avatar.png.png') }}" class="avatar" alt="avatar">
-                <div>
-                    <div class="message-header">
-                        <span class="author">Maria</span>
-                        <span class="time">9:26 AM</span>
-                    </div>
-                    <div class="message-text">Morning Alex! How was your weekend?</div>
-                </div>
-            </div>
-        </div>
+        <div class="chat-history"></div>
         <div class="chat-footer">
             <img src="{{ url_for('static', filename='img/emoji_icon.png.png') }}" alt="Emoji">
             <input type="text" class="write-message" placeholder="Введіть повідомлення...">
