@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // --- Модалка (СТАРЕ) ---
+    
     const modal = document.getElementById("createChatModal");
     const openBtn = document.getElementById("openModal");
     const closeBtn = document.querySelector(".close-modal");
@@ -36,18 +36,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const socket = io();
     let currentChatId = null;
 
-    // --- Вибір чату (НОВЕ: очищення + завантаження історії) ---
+    
     document.querySelectorAll(".sidebar-chat-card").forEach(card => {
         card.addEventListener("click", function () {
             const groupId = this.dataset.groupId;
             currentChatId = groupId;
             socket.emit("connect_chat", { group_id: groupId });
 
-            // ✅ очистити історію
+            
             const history = document.querySelector(".chat-history");
             history.innerHTML = "";
 
-            // ✅ отримати старі повідомлення з сервера
+            
             fetch(`/messages/${groupId}`)
                 .then(res => res.json())
                 .then(messages => {
@@ -66,12 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         `;
                         history.appendChild(msgDiv);
                     });
-                    history.scrollTop = history.scrollHeight; // ✅ прокрутка вниз
+                    history.scrollTop = history.scrollHeight; 
                 });
         });
     });
 
-    // --- Відправка повідомлення (СТАРЕ) ---
+   
     const sendBtn = document.querySelector(".send-btn");
     if (sendBtn) {
         sendBtn.addEventListener("click", function () {
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // --- Нове повідомлення (НОВЕ: автопрокрутка вниз) ---
+    
     socket.on("new_message", function (data) {
         console.log("Got new_message:", data);
         if (data.group_id == currentChatId) {
@@ -102,11 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             `;
             history.appendChild(msgDiv);
-            history.scrollTop = history.scrollHeight; // ✅ прокрутка вниз
+            history.scrollTop = history.scrollHeight; 
         }
     });
 
-    // --- Новий чат (СТАРЕ + НОВЕ: клік по новій картці) ---
+    
     socket.on("new_chat", function (data) {
         const list = document.querySelector(".sidebar-cards-list");
 
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
         list.appendChild(card);
 
-        // ✅ нова картка теж реагує на клік
+       
         card.addEventListener("click", function () {
             const groupId = this.dataset.groupId;
             currentChatId = groupId;
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // --- Видалення чату (СТАРЕ) ---
+    
     socket.on("chat_deleted", function (data) {
         const list = document.querySelector(".sidebar-cards-list");
         const card = list.querySelector(`.sidebar-chat-card[data-group-id="${data.id}"]`);
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// --- Видалення чату (СТАРЕ) ---
+
 function deleteChat() {
     fetch("/delete_chat", { method: "POST" });
 }
