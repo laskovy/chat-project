@@ -566,11 +566,13 @@ button:hover {
 
 
 .chat-history {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     overflow-y: auto;
     padding: 28px 36px;
     background: #FFFFFF;
-
+    justify-content: end;
 }
 
 .message {

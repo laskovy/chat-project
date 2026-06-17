@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     
     document.querySelectorAll(".sidebar-chat-card").forEach(card => {
-        card.addEventListener("click", function () {
+        card.addEventListener("click", async function () {
             const groupId = this.dataset.groupId;
             currentChatId = groupId;
             socket.emit("connect_chat", { group_id: groupId });
@@ -48,26 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
             history.innerHTML = "";
 
             
-            fetch(`/messages/${groupId}`)
-                .then(res => res.json())
-                .then(messages => {
-                    messages.forEach(msg => {
-                        const msgDiv = document.createElement("div");
-                        msgDiv.classList.add("message");
-                        msgDiv.innerHTML = `
-                            <img src="/static/img/avatar.png.png" class="avatar" alt="avatar">
-                            <div>
-                                <div class="message-header">
-                                    <span class="author">${msg.username}</span>
-                                    <span class="time">${msg.created_at}</span>
-                                </div>
-                                <div class="message-text">${msg.text}</div>
-                            </div>
-                        `;
-                        history.appendChild(msgDiv);
-                    });
-                    history.scrollTop = history.scrollHeight; 
-                });
+            const response = await fetch(`/get_messages/?chat_id=${currentChatId}`)
+            const data = await response.json()
+
+            for (const message of data){
+                const newElement = document.createElement("h4")
+                newElement.textContent = `${message.sender}: ${message.text}`
+                history.append(newElement)
+            }
         });
     });
 
